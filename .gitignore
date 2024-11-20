@@ -56,7 +56,7 @@ build/
 !**/src/test/**/build/
 
 ### Firebase App Distribution ###
-resources/servisAccountKey.json
+src/main/resources/serviceAccountKey.json
 
 ### VS Code ###
 .vscode/
