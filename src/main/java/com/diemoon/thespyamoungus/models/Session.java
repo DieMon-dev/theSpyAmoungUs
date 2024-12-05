@@ -11,7 +11,6 @@ public class Session {
     private String sessionPassword;
     private String sessionAdmin;
     private String sessionStatus;
-    private String sessionUsers;
     private Integer sessionMaxUsers;
     private Integer sessionCurrentUsers;
 }

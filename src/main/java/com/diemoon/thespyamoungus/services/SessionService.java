@@ -54,6 +54,24 @@ public class SessionService {
         return session;
     }
 
+    public Integer addSessionUser(Integer sessionId, Boolean isVerified){
+        // Add a user to a session
+        if (!isVerified) {
+            return -1;
+        }else{
+            firestore = DatabaseInitialize.getInstance().getFirestore();
+            Session session = null;
+            try {
+                session = firestore.collection("sessions").whereEqualTo("sessionId", sessionId).get().get().toObjects(Session.class).get(0);
+                session.setSessionCurrentUsers(session.getSessionCurrentUsers() + 1);
+                firestore.collection("sessions").document(session.getSessionId().toString()).set(session);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            return session.getSessionCurrentUsers();
+        }
+    }
+
     public void deleteSession(Integer sessionId){
         // Delete a session by id
         firestore = DatabaseInitialize.getInstance().getFirestore();
